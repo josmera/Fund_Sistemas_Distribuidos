@@ -5,24 +5,31 @@
 #include <unistd.h>
 
 
-void func(int sockfd, char* buff[]) 
-{ 
+void func(int sockfd, char* buff) {
+	 
 	TCP_Write_String(sockfd, buff); 
 } 
 
-int enviaDato(char* vector) { 
+int enviaDato(char *comando) { 
   
 	int sockfd, port; 
 	char *host;
-
+	
 
 	host = "localhost";
 	port = 12358;
 
-	printf("Looking to connect at <%s,%d>\n",host,port);
+	printf("Intentando conectar con <%s,%d>\n",host,port);
+
 	sockfd = TCP_Open(Get_IP(host),port);
+
 	// function for chat 
-	char *buff = vector; 
+	char *buff = comando;
+	printf("\033[1m\033[33m");//Cambiar el color y estilo de fuente para el texto a continuación
+	printf("prompt@miniserver:/>");	
+	printf("\033[0m");//Reestablece los valores de color y estilo de fuente
+	leer_de_teclado(BUFSIZ,buff);
+
 	func(sockfd, buff); 
 
 	// close the socket 
@@ -30,16 +37,11 @@ int enviaDato(char* vector) {
 } 
 
 int main(int argc, char *argv[]) {
-  char comando[BUFSIZ];
-  char **vector;
 
-  printf("Digite su comando: ");
-  leer_de_teclado(BUFSIZ,comando);
-  vector = de_cadena_a_vector(comando);
-  int i = 0;
-  while (vector[i]) 
-   // printf("%s\n",);
-    enviaDato(vector[i++]);
+  char comando[BUFSIZ];
+
+  enviaDato(comando);
   
   return 0;
+
 }

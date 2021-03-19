@@ -26,11 +26,11 @@ int TCP_Open_By_IP(char *hostip, t_port port) {
 	// socket create and varification 
 	sockfd = socket(AF_INET, SOCK_STREAM, 0); 
 	if (sockfd == -1) { 
-		printf("socket creation failed...\n"); 
+		printf("Falla en la creación del socket...\n"); 
 		exit(0); 
 	} 
 	else
-		printf("Socket successfully created..\n"); 
+		printf("Socket creado exitosamente..\n"); 
 	bzero(&servaddr, sizeof(servaddr)); 
 
 	// assign IP, PORT 
@@ -40,11 +40,11 @@ int TCP_Open_By_IP(char *hostip, t_port port) {
 
 	// connect the client socket to server socket 
 	if (connect(sockfd, (SA*)&servaddr, sizeof(servaddr)) != 0) { 
-		printf("connection with the server failed...\n"); 
+		printf("Falla en la conexión con el servidor...\n"); 
 		exit(0); 
 	} 
 	else
-		printf("connected to the server..\n"); 
+		printf("Conectado al servidor..\n"); 
 
 	return sockfd;
 }
@@ -59,11 +59,11 @@ int TCP_Server_Open(t_port port) {
 	// socket create and verification 
 	sockfd = socket(AF_INET, SOCK_STREAM, 0); 
 	if (sockfd == -1) { 
-		printf("socket creation failed...\n"); 
+		printf("Falla en la creación del socket...\n"); 
 		exit(0); 
 	} 
 	else
-		printf("Socket successfully created..\n"); 
+		printf("Socket creado exitosamente..\n"); 
 	bzero(&servaddr, sizeof(servaddr)); 
 
 	// assign IP, PORT 
